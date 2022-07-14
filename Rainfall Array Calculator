@@ -1,0 +1,41 @@
+using System;
+using static System.Console;
+
+namespace rainfall
+{
+    class rainfall
+        {
+            static void Main (string[] args)
+            {
+            monthlyRainfall();
+
+            }
+
+
+            public static void monthlyRainfall()
+            {
+                string [] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+
+                string[] monthlyRain = new string [12];
+
+                for (int r =0; r < months.Length; r++)
+                {
+                    WriteLine("Enter rainfall for  " + months[r] + " in mm: ");
+
+                    
+                    monthlyRain[r] = ReadLine();
+                    
+                }
+            WriteLine("-----------------------------");
+            WriteLine("The monthly rainfall entered is:");
+
+                for (int c = 0; c < months.Length; c++)
+                {
+                    WriteLine(months[c] + ": " + monthlyRain[c] + "mm");
+
+                }
+
+            }
+
+        }
+}
