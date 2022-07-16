@@ -1,0 +1,50 @@
+using System;
+using static System.Console;
+
+namespace Array1
+{
+    class Array1
+    {
+        static void Main(string[]args)
+        {
+            searchNames();
+
+        }
+
+        static void searchNames()
+        {
+            string[] names = new string[3];
+            WriteLine("Guess my name in 3 turns.");
+
+            for (int r = 0; r < names.Length; r++)
+            {
+                WriteLine("Enter guess {0}", r);
+                names[r] = ReadLine();
+
+            }
+
+            Array.Sort(names);
+            WriteLine("You entered these names: \n");
+            foreach(string name in names)
+            {
+                WriteLine(name);
+            }
+
+            string myName = "Catherine";
+
+            int x = Array.BinarySearch(names, myName.ToLower());
+
+
+            if (x > 0)
+            {
+                Console.WriteLine("Hey {0} is my name! Well done!", names[x].ToUpper());
+            }
+            else
+            {
+                WriteLine("Sorry, you lose :(");
+            }
+
+        }
+
+    }
+}
