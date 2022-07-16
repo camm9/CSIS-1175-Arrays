@@ -1,0 +1,118 @@
+using System;
+using static System.Console;
+using System.Linq;
+
+namespace Test
+{
+    public class Test
+    {
+        static void Main(string[]args)
+        {
+            
+            countSteps1(inputSteps());
+
+        }
+
+        static void countSteps()
+        {
+            int[,] stepsPerDay =
+            {
+
+                {500,1000, 1500 }, // monday
+                {600, 900, 1700 }, // tuesday
+                {200, 900, 1200 }, // wednesday
+                {900, 1300, 2700 }, //thursday
+                {100, 2700, 5000 }, //friday
+                {900, 1200, 2000 }, //Saturday
+                {1800, 2700, 6000 } //Sunday
+            };
+
+            //Calculate daily average
+            int []sum = new int [7];
+            int [] weekSum = new int [7];
+            for (int row =0; row < stepsPerDay.GetLength(0); row++)
+            {
+                for (int col = 0; col < stepsPerDay.GetLength(1); col++)
+                   
+                {
+                    sum[row] += stepsPerDay[row,col];
+                }
+            }
+
+            int[] dailyAverages = new int[7];
+            int weekAverage = 0;
+            for (int day =0; day < stepsPerDay.GetLength(0); day++)
+            {
+                dailyAverages[day] = (sum[day] / 3);
+                weekAverage += dailyAverages[day];
+
+            }
+
+            //Display Daily averages
+            string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
+            for (int i = 0; i < days.Length; i++)
+            {
+                WriteLine("{0}: {1} daily steps", days[i], dailyAverages[i]);
+            }
+                WriteLine("Week Average: {0} daily steps", weekAverage);
+
+
+        }
+
+        static void countSteps1(int[,] steps)
+        {
+            int[,] stepsPerDay = steps;
+
+            //Calculate daily average
+            int[] sum = new int[7];
+            int[] weekSum = new int[7];
+            for (int row = 0; row < stepsPerDay.GetLength(0); row++)
+            {
+                for (int col = 0; col < stepsPerDay.GetLength(1); col++)
+
+                {
+                    sum[row] += stepsPerDay[row, col];
+                }
+            }
+
+            int[] dailyAverages = new int[7];
+            int weekAverage = 0;
+            for (int day = 0; day < stepsPerDay.GetLength(0); day++)
+            {
+                dailyAverages[day] = (sum[day] / 3);
+                weekAverage += dailyAverages[day];
+
+            }
+
+            //Display Daily averages
+            string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
+            for (int i = 0; i < days.Length; i++)
+            {
+                WriteLine("{0}: {1} daily steps", days[i], dailyAverages[i]);
+            }
+            WriteLine("Week Average: {0} daily steps", weekAverage);
+
+
+        }
+
+        static int[,] inputSteps()
+        {
+            int [,]steps = new int [7,3];
+            string[] timeDay = { "Morning", "Noon", "Evening" };
+            string[] days = { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+
+            for (int row =0; row < steps.GetLength(0); row++)
+            {
+                for (int col =0; col < steps.GetLength(1); col++)
+                {
+                    WriteLine("How many steps did you take at {0} on {1}", timeDay[col],days[row]);
+                    steps[row,col] = Convert.ToInt32(ReadLine());
+                }
+            }
+
+            return steps;
+        }
+    }
+}
